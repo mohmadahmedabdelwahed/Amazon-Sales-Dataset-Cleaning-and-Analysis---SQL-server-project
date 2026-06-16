@@ -1,4 +1,4 @@
-# Amazon-Sales-Dataset-Cleaning-and-Analysis - SQL-server-project
+# Amazon Sales Dataset Cleaning and Analysis - SQL Server Project
 ## Project overview:
 
 ## Dataset Description:
@@ -158,7 +158,7 @@ WHERE rating_count_clean IS NULL
 ```
 
 
-#### Removal of duplicate values for product_id with more than rating_count
+#### 4.Removal of duplicate values for product_id with more than rating_count
 ### 4.1 make the max rating_count only exist 
 ```sql
 WITH cte AS 
