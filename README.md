@@ -313,3 +313,153 @@ DROP COLUMN ord
 ;
 ```
 
+## Analysis Steps Performed
+### Q1: What is the total number of products in the dataset?
+```sql
+SELECT 
+	COUNT(product_id) AS total_product_count
+FROM amazon_sales_new_2
+;
+```
+### Q2:How many unique categories are there?
+```sql
+SELECT 
+	COUNT(DISTINCT category) AS unique_category_count
+FROM amazon_sales_new_2
+;
+```
+
+### Q3: What is the average rating across all products?
+```sql
+SELECT 
+	AVG(rating_clean) AS avg_rating
+FROM amazon_sales_new_2
+;
+```
+
+### Q4: Which product has the highest discounted price?
+```sql
+SELECT TOP 1 product_name, discounted_price_clean
+FROM amazon_sales_new_2
+ORDER BY discounted_price_clean DESC;
+```
+
+### Q5: Which product has the lowest actual price?
+```sql
+SELECT TOP 1 product_name, actual_price_clean
+FROM amazon_sales_new_2
+ORDER BY actual_price_clean ASC;
+```
+
+### Q6: How many products have a discount percentage greater than 50%?
+```sql
+SELECT 
+	COUNT(*) AS count_products_with_discout_per_greater_than_50
+FROM amazon_sales_new_2
+WHERE discount_percentage_clean > 50
+;
+```
+
+### Q7: What are the top 10 highest rated products?
+```sql
+SELECT 
+	TOP 10 product_id,
+	rating_clean
+FROM amazon_sales_new_2
+ORDER BY rating_clean DESC
+;
+```
+
+### Q8: Which category has the highest average discount percentage?
+```sql
+SELECT 
+	TOP 1 
+	category,
+	AVG(discount_percentage_clean) AS avg_discount_percentage
+FROM amazon_sales_new_2
+GROUP BY category
+ORDER BY avg_discount_percentage DESC
+;
+```
+
+### Q9: What is the average discount percentage per category?
+```sql
+SELECT 
+	category,
+	AVG(discount_percentage_clean) AS avg_discount_percentage
+FROM amazon_sales_new_2
+GROUP BY category
+;
+```
+
+### Q10: Which category has the most products listed?
+
+```sql
+SELECT 
+	TOP 1 category,
+	COUNT(*) AS total_product_listed 
+FROM amazon_sales_new_2
+GROUP BY category
+ORDER BY total_product_listed  DESC
+;
+```
+
+### Q11: What is the average rating per category?
+
+```sql
+SELECT 
+	category,
+	AVG(rating_clean) AS avg_rating
+FROM amazon_sales_new_2
+GROUP BY category
+;
+```
+
+### Q12: Which products have a rating above 4.5 and a discount above 50%?
+```sql
+SELECT 
+	product_id,
+	product_name
+FROM amazon_sales_new_2
+WHERE 
+rating_clean > 4.5 AND discount_percentage_clean > 50
+;
+```
+
+### Q13: What is the correlation between discount percentage and rating?
+```SQL
+SELECT 
+    CASE 
+        WHEN discount_percentage_clean < 20 THEN '0-20%'
+        WHEN discount_percentage_clean < 40 THEN '20-40%'
+        WHEN discount_percentage_clean < 60 THEN '40-60%'
+        WHEN discount_percentage_clean < 80 THEN '60-80%'
+        ELSE '80-100%'
+    END AS discount_bucket,
+    AVG(rating_clean) AS avg_rating,
+    COUNT(*) AS num_products
+FROM amazon_sales_new_2
+GROUP BY 
+    CASE 
+        WHEN discount_percentage_clean < 20 THEN '0-20%'
+        WHEN discount_percentage_clean < 40 THEN '20-40%'
+        WHEN discount_percentage_clean < 60 THEN '40-60%'
+        WHEN discount_percentage_clean < 80 THEN '60-80%'
+        ELSE '80-100%'
+    END
+ORDER BY discount_bucket
+;
+```
+
+### Q14: Which category generates the most potential revenue based on actual price
+```SQL
+SELECT 
+	SUM((actual_price_clean * rating_count_clean))  AS revnue,
+	category
+FROM amazon_sales_new_2
+GROUP BY category
+ORDER BY revnue DESC
+;
+```
+
+
