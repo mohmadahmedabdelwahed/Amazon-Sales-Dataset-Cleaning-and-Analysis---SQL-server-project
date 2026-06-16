@@ -318,14 +318,14 @@ DROP COLUMN ord
 ```sql
 SELECT 
 	COUNT(product_id) AS total_product_count
-FROM amazon_sales_new_2
+FROM amazon_sales_new_3
 ;
 ```
 ### Q2:How many unique categories are there?
 ```sql
 SELECT 
 	COUNT(DISTINCT category) AS unique_category_count
-FROM amazon_sales_new_2
+FROM amazon_sales_new_3
 ;
 ```
 
@@ -333,21 +333,21 @@ FROM amazon_sales_new_2
 ```sql
 SELECT 
 	AVG(rating_clean) AS avg_rating
-FROM amazon_sales_new_2
+FROM amazon_sales_new_3
 ;
 ```
 
 ### Q4: Which product has the highest discounted price?
 ```sql
 SELECT TOP 1 product_name, discounted_price_clean
-FROM amazon_sales_new_2
+FROM amazon_sales_new_3
 ORDER BY discounted_price_clean DESC;
 ```
 
 ### Q5: Which product has the lowest actual price?
 ```sql
 SELECT TOP 1 product_name, actual_price_clean
-FROM amazon_sales_new_2
+FROM amazon_sales_new_3
 ORDER BY actual_price_clean ASC;
 ```
 
@@ -355,7 +355,7 @@ ORDER BY actual_price_clean ASC;
 ```sql
 SELECT 
 	COUNT(*) AS count_products_with_discout_per_greater_than_50
-FROM amazon_sales_new_2
+FROM amazon_sales_new_3
 WHERE discount_percentage_clean > 50
 ;
 ```
@@ -365,7 +365,7 @@ WHERE discount_percentage_clean > 50
 SELECT 
 	TOP 10 product_id,
 	rating_clean
-FROM amazon_sales_new_2
+FROM amazon_sales_new_3
 ORDER BY rating_clean DESC
 ;
 ```
@@ -376,7 +376,7 @@ SELECT
 	TOP 1 
 	category,
 	AVG(discount_percentage_clean) AS avg_discount_percentage
-FROM amazon_sales_new_2
+FROM amazon_sales_new_3
 GROUP BY category
 ORDER BY avg_discount_percentage DESC
 ;
@@ -387,7 +387,7 @@ ORDER BY avg_discount_percentage DESC
 SELECT 
 	category,
 	AVG(discount_percentage_clean) AS avg_discount_percentage
-FROM amazon_sales_new_2
+FROM amazon_sales_new_3
 GROUP BY category
 ;
 ```
@@ -398,7 +398,7 @@ GROUP BY category
 SELECT 
 	TOP 1 category,
 	COUNT(*) AS total_product_listed 
-FROM amazon_sales_new_2
+FROM amazon_sales_new_3
 GROUP BY category
 ORDER BY total_product_listed  DESC
 ;
@@ -410,7 +410,7 @@ ORDER BY total_product_listed  DESC
 SELECT 
 	category,
 	AVG(rating_clean) AS avg_rating
-FROM amazon_sales_new_2
+FROM amazon_sales_new_3
 GROUP BY category
 ;
 ```
@@ -420,7 +420,7 @@ GROUP BY category
 SELECT 
 	product_id,
 	product_name
-FROM amazon_sales_new_2
+FROM amazon_sales_new_3
 WHERE 
 rating_clean > 4.5 AND discount_percentage_clean > 50
 ;
@@ -438,7 +438,7 @@ SELECT
     END AS discount_bucket,
     AVG(rating_clean) AS avg_rating,
     COUNT(*) AS num_products
-FROM amazon_sales_new_2
+FROM amazon_sales_new_3
 GROUP BY 
     CASE 
         WHEN discount_percentage_clean < 20 THEN '0-20%'
@@ -456,7 +456,7 @@ ORDER BY discount_bucket
 SELECT 
 	SUM((actual_price_clean * rating_count_clean))  AS revnue,
 	category
-FROM amazon_sales_new_2
+FROM amazon_sales_new_3
 GROUP BY category
 ORDER BY revnue DESC
 ;
