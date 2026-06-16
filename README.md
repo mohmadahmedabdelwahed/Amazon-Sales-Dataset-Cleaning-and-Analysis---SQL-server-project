@@ -158,8 +158,8 @@ WHERE rating_count_clean IS NULL
 ```
 
 
-#### 4.Removal of duplicate values for product_id with more than rating_count
-### 4.1 make the max rating_count only exist 
+### 4.Removal of duplicate values for product_id with more than rating_count
+#### 4.1 make the max rating_count only exist 
 ```sql
 WITH cte AS 
 (
