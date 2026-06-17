@@ -1,16 +1,42 @@
 # Amazon Sales Dataset Cleaning and Analysis - SQL Server Project
 ## Project overview:
+This project aims to improve data quality by applying structured data cleaning techniques to a raw and inconsistent dataset, converting it into a reliable and analysis-ready format. The cleaned dataset is then analyzed to extract meaningful insights, evaluate trends, and answer relevant business questions.
 
 ## Dataset Description:
+the datsset contains 1466 rows of sales records.
 
 ### Data Columns:
+product_id, product_name, category, discounted_price, actual_price, discount_percentage, rating, rating_count, about_product, user_id, user_name, review_id, review_title, review_content, img_link, product_link.
 
 ## Tools used:
 Microsoft SQL Server (SSMS)
 
 ## Problems Found in Raw Data:
 
+1. Duplicate rows.
+2. standarization of rating, rating_count, and category.
+3. change the columns to the right data type.
+
 ## SQL Concepts Practiced
+1. ALTER TABLE / ALTER COLUMN.
+2. UPDATE with SUBSTRING().
+3. TRY_CAST.
+4. ROW_NUMBER() for deduplication.
+5. PARTITION BY with window functions.
+6. CTEs (WITH clause).
+7. NULL handling.
+8. CASE statments.
+9. Joins.
+10. Aggregate Functions.
+11. Filtering Data.
+12. Grouping Data.
+13. Sorting Results.
+14. Top-N Analysis.
+15. Distinct Value Analysis.
+16. Conditional Logic.
+17. Data Categorization / Bucketing.
+18. Business Metrics Calculation.
+19. Ranking and Comparative Analysis.
 
 
 ## Cleaning Steps Performed
