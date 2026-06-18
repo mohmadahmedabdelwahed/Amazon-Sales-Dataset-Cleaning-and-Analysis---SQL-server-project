@@ -1,4 +1,7 @@
 # Amazon Sales Dataset Cleaning and Analysis - SQL Server Project
+
+This project involves cleaning and analyzing an Amazon sales dataset sourced from Kaggle using SQL Server. The dataset contains product listings across multiple electronics categories including USB cables, smart TVs, and WiFi adapters.
+
 ## Project overview:
 This project aims to improve data quality by applying structured data cleaning techniques to a raw and inconsistent dataset, converting it into a reliable and analysis-ready format. The cleaned dataset is then analyzed to extract meaningful insights, evaluate trends, and answer relevant business questions.
 
